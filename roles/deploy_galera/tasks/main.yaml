@@ -1,0 +1,30 @@
+---
+- name: install galera PKGS
+  dnf:
+    name:
+      - galera
+      - rsync
+    state: latest
+
+- name: Allow Galera firewall ports
+  firewalld:
+    port: "{{ item }}"
+    zone: public
+    state: enabled
+    permanent: true
+  loop:
+    - 4567/tcp
+    - 4567/udp
+    - 4444/tcp
+    - 4568/tcp
+  notify:
+    - firewalld_reload
+- meta: flush_handlers
+
+
+- name: Push Galera config file
+  template: 
+    src: galera.cnf.j2
+    dest: /etc/my.cnf.d/galera.cnf
+
+

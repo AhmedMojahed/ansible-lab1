@@ -12,7 +12,7 @@
   dnf:
     name:
       - mariadb-server
-      - mariadb-client
+      - MariaDB-client
     state: latest
 
 - name: Enable and start MariaDB Service
