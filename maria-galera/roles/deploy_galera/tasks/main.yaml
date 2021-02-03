@@ -28,3 +28,15 @@
     dest: /etc/my.cnf.d/galera.cnf
 
 
+
+- name: Start Galera cluster
+  command: galera_new_cluster
+  when: ansible_host=10.0.0.10
+
+- name: start MariaDB on DB2
+  systemd:
+    name: mariadb
+    state: started
+  when: ansible_host=10.0.0.11
+
+
