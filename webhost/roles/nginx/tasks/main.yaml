@@ -13,8 +13,7 @@
 
 - name: alllow port 80
   firewalld:
-    port: '80'
-    proto: tcp
+    port: "80/tcp"
     zone: public
     state: enabled
     permanent: true
